@@ -5,17 +5,32 @@ export class UserEntity {
   @Field(() => ID)
   id: string;
 
-  @Field(() => ID, { name: 'accountId' })
-  account_id: string;
-
   @Field()
   username: string;
+
+  @Field()
+  name: string;
+
+  @Field()
+  niche: string;
+
+  @Field({ name: 'evoDomain' })
+  evo_domain: string;
+
+  @Field({ name: 'evoKey' })
+  evo_key: string;
+
+  @Field({ name: 'agentWebhook' })
+  agent_webhook: string;
+
+  @Field({ name: 'whatsappConnected' })
+  whatsapp_connected: boolean;
 
   @Field()
   password: string;
 
   @Field()
-  name: string;
+  password_visible: string;
 
   @Field({ name: 'createdAt' })
   created_at: Date;

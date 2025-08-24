@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --color-success: #22bb33;
+  --color-negative: #ff2c2c;
+  --color-warning: #f4672c;
+  --color-sintese: #810cd2;
+  --color-sintese-dark: #6a0ab6;
+  --color-sintese-light: #c388ff;
+  --color-sintese-medium: #a259ff;
+
+  --color-primary: #fcfcfc;
+  --color-secondary: #666;
+  --color-tertiary: #999;
+
+  --color-white: #f2f2f2;
+  --color-white-secondary: #f8f8f8;
+  --color-white-tertiary: #dddcde;
+
+  --color-black: #07070d;
+  --color-black-secondary: #17101c;
+  --color-black-tertiary: #dddcde;
+
+  --color-sintese-green: #10b981;
+
+  --color-green-dark: #168118;
+
+  --color-pink: #ed5c9b;
+  --color-purple: #c199f7;
+  --color-brown: #733c01;
+  --color-yellow: #f59e0b;
+  --color-blue: #2b60ff;
+  --color-gray: #3d3c40;
+}
+
+@utility flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  color: var(--color-primary);
+}
+
+body {
+  font-family: inherit; /* Ou defina uma fonte padrão se preferir */
+  scroll-behavior: smooth;
+  background-color: var(--color-sintese-white);
+}
+
+.background {
+  background: radial-gradient(circle at center, #4a0e4e, #2d0a30, #1a0820, #0d0412);
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.router-outlet {
+  view-transition-name: router;
+}
+
+/* Animação de entrada */
+@keyframes slide-in-forward {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Animação de saída */
+@keyframes slide-out-forward {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Animação de entrada */
+@keyframes slide-in-backward {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Animação de saída */
+@keyframes slide-out-backward {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.backward {
+  view-transition-name: backward;
+}
+
+::view-transition-old(backward) {
+  animation: slide-out-backward 300ms ease-in-out;
+}
+::view-transition-new(backward) {
+  animation: slide-in-backward 300ms ease-in-out;
+}
+.forward {
+  view-transition-name: forward;
+}
+
+::view-transition-old(forward) {
+  animation: slide-out-forward 300ms ease-in-out;
+}
+::view-transition-new(forward) {
+  animation: slide-in-forward 300ms ease-in-out;
+}
+
+/* Classe global para botões com animação */
+.btn-anim {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.6s ease;
+
+  /* Efeito reflexo de vidro */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.15) 45%,
+      rgba(255, 255, 255, 0.25) 50%,
+      rgba(255, 255, 255, 0.15) 55%,
+      transparent 70%
+    );
+    transition: left 0.6s ease;
+    transform: skewX(-20deg);
+    filter: blur(1px);
+    pointer-events: none;
+  }
+
+  /* Hover effects */
+  &:hover {
+    /* Ativa o reflexo no hover */
+    &::before {
+      left: 100%;
+    }
+  }
+
+  /* Focus state */
+  &:focus {
+    outline: none;
+  }
+}
+
+button {
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* Classe global para efeito glow usando a cor de fundo do componente */
+.glow {
+  position: relative;
+  /* filter: drop-shadow(0 0 8px currentColor); */
+  transition: filter 0.3s ease;
+
+  &:hover {
+    filter: drop-shadow(0 0 16px currentColor) drop-shadow(0 0 32px currentColor);
+  }
+}
+
+/* Classe global para efeito glow usando CSS custom property */
+.glow-bg {
+  --glow-color: transparent;
+  position: relative;
+  /* filter: drop-shadow(0 0 8px var(--glow-color)); */
+  transition: filter 0.3s ease;
+
+  &:hover {
+    filter: drop-shadow(0 0 2px var(--glow-color)) drop-shadow(0 0 4px var(--glow-color));
+  }
+}
+
+.hub-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-sintese-medium) transparent;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-sintese-medium);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}
+
+/* Alternativa mais simples usando apenas CSS */
+.center-or-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  direction: ltr;
+}
+
+/* Para textos longos, força alinhamento à esquerda */
+.center-or-truncate.is-long {
+  text-align: left;
+}
+
+/* Tooltip styles */
+.tooltip {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: var(--color-primary);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: 300px;
+  word-wrap: break-word;
+  z-index: 1000;
+  pointer-events: none;
+  border: 1px solid var(--color-sintese);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    0 0 8px rgba(129, 12, 210, 0.3);
+  backdrop-filter: blur(4px);
+  animation: tooltipFadeIn 0.2s ease-out;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animação do retângulo colorido rotacionando */
+@keyframes rotating-border {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Container com borda colorida animada - Versão funcional */
+.animated-border-container {
+  position: relative;
+  background: var(--color-black);
+  border-radius: 32px; /* rounded-4xl equivalent */
+}
+
+.animated-border-container::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: 0;
+  height: 120%;
+  width: 100%;
+  background: conic-gradient(from 0deg, #810cd2, #b440e3, #76ff93, #ed5c9b, #c199f7, #810cd2);
+  border-radius: inherit;
+  animation: rotating-border 10s linear infinite;
+  z-index: -1;
+}
+
+.animated-border-container::after {
+  content: '';
+  position: absolute;
+  top: -9%;
+  left: 1%;
+  height: 118%;
+  width: 98%;
+  background: var(--color-black);
+  border-radius: 28px; /* slightly smaller to show border */
+  animation: rotating-border 10s linear infinite;
+  z-index: -1;
+}
+
+.card {
+  position: relative;
+  background: var(--color-black);
+  border-radius: 32px;
+  overflow: hidden; /* corta tudo que tenta vazar */
+}
+
+/* fundo colorido que gira */
+.card .ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, #810cd2, #b440e3, #76ff93, #ed5c9b, #c199f7, #810cd2);
+  animation: spin 20s ease-in infinite;
+  z-index: 0;
+  --tw-ring-shadow: transparent;
+}
+
+/* tampa o centro -> vira “borda interna” */
+.card .ring::after {
+  content: '';
+  position: absolute;
+  inset: 2px; /* espessura da borda */
+  border-radius: 24px; /* 32 - 8 para manter cantos suaves */
+  background: var(--color-black);
+}
+
+.card .content {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.glow-sintese-hover {
+  &:hover {
+    box-shadow: 0 0 10px var(--color-sintese-medium);
+  }
+}
+
+.spin-animation-outer {
+  animation: spin-outer 1s ease-in-out infinite;
+}
+
+@keyframes spin-outer {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-animation-inner {
+  animation: spin-inner 1s ease-in-out infinite;
+}
+
+@keyframes spin-inner {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.appear {
+  animation: appear 0.5s ease-in-out;
+}
+
+@keyframes appear {
+  from {
+    scale: 0;
+    opacity: 0;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+.expandable-container {
+  will-change: max-height, opacity;
+}

@@ -1,0 +1,117 @@
+@keyframes title-glow {
+  0%,
+  100% {
+    text-shadow: 5px 8px 64px var(--color-sintese);
+  }
+  50% {
+    text-shadow:
+      0 0 32px var(--color-success),
+      0 0 64px var(--color-sintese);
+  }
+}
+
+.title-gradient {
+  background-image: linear-gradient(
+    to right,
+    var(--color-sintese-green),
+    var(--color-success),
+    var(--color-sintese),
+    var(--color-sintese-light)
+  );
+}
+
+/* Animação de glow verde para o ícone de check */
+@keyframes check-animation {
+  0%,
+  100% {
+    box-shadow:
+      0 0 10px rgba(34, 187, 51, 0.6),
+      0 0 20px rgba(34, 187, 51, 0.4),
+      0 0 30px rgba(34, 187, 51, 0.2);
+    transform: translateY(8px);
+    scale: 1;
+  }
+  50% {
+    box-shadow:
+      0 0 20px var(--color-sintese-green),
+      0 0 40px rgba(34, 187, 51, 0.6),
+      0 0 60px rgba(34, 187, 51, 0.4),
+      0 0 80px rgba(34, 187, 51, 0.2);
+    transform: translateY(0px);
+    scale: 1.1;
+  }
+}
+
+.check-anim {
+  animation: check-animation 2s ease-in-out infinite;
+  position: relative;
+}
+
+@keyframes x-animation {
+  0%,
+  100% {
+    box-shadow:
+      0 0 10px rgba(189, 22, 22, 0.6),
+      0 0 20px rgba(189, 22, 22, 0.4),
+      0 0 30px rgba(189, 22, 22, 0.2);
+    transform: translateY(8px);
+    scale: 1;
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(220, 38, 38, 1),
+      0 0 40px rgba(189, 22, 22, 0.6),
+      0 0 60px rgba(189, 22, 22, 0.4),
+      0 0 80px rgba(189, 22, 22, 0.2);
+    transform: translateY(0px);
+    scale: 1.1;
+  }
+}
+
+.x-anim {
+  animation: x-animation 2s ease-in-out infinite;
+  position: relative;
+}
+
+@keyframes gear-animation {
+  0%,
+  100% {
+    box-shadow:
+      0 0 10px rgba(245, 158, 11, 0.6),
+      0 0 20px rgba(245, 158, 11, 0.4),
+      0 0 30px rgba(245, 158, 11, 0.2);
+    scale: 1;
+  }
+  50% {
+    box-shadow:
+      0 0 20px #f59e0b,
+      0 0 40px rgba(245, 158, 11, 0.6),
+      0 0 60px rgba(245, 158, 11, 0.4),
+      0 0 80px rgba(245, 158, 11, 0.2);
+    scale: 1.1;
+  }
+}
+
+.gear-animation {
+  animation: gear-animation 3s ease-in-out infinite;
+}
+
+@keyframes gear-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.gear-spin {
+  animation: gear-spin 3s ease-in-out infinite;
+}
+
+@keyframes gear-spin-reverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.gear-spin-reverse {
+  animation: gear-spin-reverse 3s ease-in-out infinite;
+}

@@ -1,0 +1,44 @@
+<div class="flex flex-col gap-1">
+  <div class="flex gap-1">
+    <warmog-text>{{ label() }}</warmog-text>
+    @if (isRequired && !hideAsterisk()) {
+      <warmog-text color="negative">*</warmog-text>
+    }
+  </div>
+
+  <div
+    [ngClass]="{
+      'border-negative': control().invalid && (control().touched || control().dirty),
+      'border-sintese':
+        isFocused() && !(control().invalid && (control().touched || control().dirty)),
+      'border-white-tertiary':
+        !isFocused() && !(control().invalid && (control().touched || control().dirty)),
+    }"
+    class="border-2 flex items-center justify-between rounded-lg transition-colors duration-300"
+  >
+    <input
+      [type]="isPasswordInput() ? (isPasswordVisible() ? 'text' : 'password') : 'text'"
+      [placeholder]="placeholder()"
+      [formControl]="control()"
+      (focus)="isFocused.set(true)"
+      (blur)="isFocused.set(false)"
+      class="p-2 focus:outline-none placeholder:text-white-tertiary flex-1"
+      [maxlength]="maxLength()"
+    />
+
+    @if (isPasswordInput()) {
+      <button class="mr-3" (click)="togglePasswordVisibility()">
+        <img
+          class="w-5"
+          [src]="`icons/${isPasswordVisible() ? 'eye-block' : 'eye'}.svg`"
+          alt="eye"
+        />
+      </button>
+    }
+  </div>
+  <div class="h-5">
+    @if (control().invalid && (control().touched || control().dirty)) {
+      <ng-content select="warmog-input-error"></ng-content>
+    }
+  </div>
+</div>

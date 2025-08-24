@@ -1,0 +1,17 @@
+<div class="navigation-container bg-black">
+  <div class="w-full h-full flex gap-1 justify-center items-center p-2">
+    @for (item of navItems; track item.path) {
+      <button
+        class="btn-anim px-6 py-3 rounded-xl text-white transition duration-200 border hover:bg-sintese/40 hover:backdrop-blur-xl hover:border-sintese/50 hover:shadow-2xl"
+        [ngClass]="{
+          'bg-sintese/40 backdrop-blur-xl shadow-2xl  border-sintese/50':
+            activeRoute() === item.path,
+          'bg-white/20 backdrop-blur-md  border-white/30 shadow-lg': activeRoute() !== item.path,
+        }"
+        (click)="onNavItemClick(item.path)"
+      >
+        {{ item.label }}
+      </button>
+    }
+  </div>
+</div>

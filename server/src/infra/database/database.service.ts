@@ -18,8 +18,8 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
         port: this.configService.get('SUPABASE_PORT'),
         user: this.configService.get('SUPABASE_USER'),
         password: this.configService.get('SUPABASE_PASSWORD'),
-        database: this.configService.get('SUPABASE_DATABASE'),
-        ssl: { rejectUnauthorized: false },
+        database: this.configService.get('SUPABASE_DB'),
+        // ssl: { rejectUnauthorized: false },
       },
       pool: {
         min: 2,

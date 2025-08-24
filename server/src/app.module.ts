@@ -7,15 +7,12 @@ import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { MeModule } from './modules/me/me.module';
 import { S3Module } from './modules/s3/s3.module';
+import { WhatsappModule } from './modules/whatsapp/whatsapp.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['production', 'homolog'].includes(
-        process.env.NODE_ENV ?? '',
-      )
-        ? `.env`
-        : '.env.development',
+      envFilePath: `.env.${process.env.NODE_ENV || 'development'}`,
       isGlobal: true,
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -30,6 +27,7 @@ import { S3Module } from './modules/s3/s3.module';
     AuthModule,
     MeModule,
     S3Module,
+    WhatsappModule,
   ],
 })
 export class AppModule {}

@@ -1,0 +1,268 @@
+<div class="size-full flex items-center flex-col overflow-y-auto hub-scrollbar">
+  <div class="flex flex-col items-center justify-center p-8">
+    <h1 class="text-4xl font-bold text-transparent bg-clip-text title-gradient animate-title-glow">
+      Conexão WhatsApp
+    </h1>
+    <p class="mt-2 text-lg text-gray-300">Gerencie sua conexão com a Evolution API</p>
+  </div>
+
+  @if (loading()) {
+    <div class="size-full flex-center -translate-y-[4.375rem]">
+      <div class="relative double-spin-wrapper animate-bounce">
+        <div
+          class="w-24 h-24 border-6 border-white border-t-sintese rounded-full spin-animation-outer"
+        ></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div
+            class="w-12 h-12 border-3 border-sintese border-b-white rounded-full spin-animation-inner"
+          ></div>
+        </div>
+      </div>
+    </div>
+  } @else {
+    @if (!whatsappConfigured()) {
+      <div class="card w-[40rem]">
+        <div class="ring"></div>
+
+        <div class="rounded-4xl flex-center flex-col content p-12">
+          <div class="relative w-22 h-22 bg-yellow rounded-xl border-4 border-black gear-animation">
+            <img
+              class="w-12 absolute top-[1.6rem] left-[1.6rem] rotate-[22.5deg] gear-spin gear-animation"
+              src="icons/gear-white.svg"
+              alt="gear"
+            />
+            <img
+              class="w-8 absolute top-[0.4rem] left-[0.4rem] gear-spin-reverse"
+              src="icons/gear-white.svg"
+              alt="gear"
+            />
+          </div>
+          <p class="text-yellow mt-8 text-3xl font-bold">Configuração em andamento</p>
+          <div
+            class="mt-8 flex items-center text-center flex-col p-4 w-full border border-yellow bg-yellow/10 rounded-xl"
+          >
+            <div class="flex-center gap-2">
+              <img class="w-8" src="icons/bulb.svg" alt="" />
+              <p class="font-medium">Nossa equipe está trabalhando para você!</p>
+            </div>
+
+            <p class="mt-2 text-tertiary">
+              Assim que a configuração estiver completa, você receberá uma notificação e poderá
+              acessar todas as funcionalidades de conexão com o WhatsApp.
+            </p>
+          </div>
+        </div>
+      </div>
+    } @else if (whatsappConnected()) {
+      <div class="flex flex-col items-center gap-8">
+        <div class="card w-[40rem]">
+          <div class="ring"></div>
+
+          <div class="rounded-4xl flex-center flex-col content py-16">
+            <div
+              class="flex-center bg-success w-16 h-16 p-1 rounded-xl border-4 border-black check-anim"
+            >
+              <img class="w-full" src="icons/check-white.svg" alt="check" />
+            </div>
+            <p class="text-sintese-green mt-8 text-3xl font-bold">Conectado</p>
+            <p class="mt-4 text-xl">Sua instância do WhatsApp está operando!</p>
+            <button
+              (click)="checkConnection()"
+              class="hover:-translate-y-1 mt-8 text-lg btn-anim px-6 py-4 rounded-xl bg-gradient-to-br from-blue to-sintese hover:from-blue/90 hover:to-sintese/90 text-white font-semibold shadow-lg hover:shadow-xl"
+            >
+              Checar novamente
+            </button>
+          </div>
+        </div>
+
+        <div class="content w-[40rem] bg-black rounded-4xl flex items-center flex-col p-8">
+          <button
+            class="btn-anim relative w-56 h-14 bg-sintese-medium rounded-full p-1 toggle-container"
+            (click)="toggleWhatsappMode()"
+          >
+            <div
+              class="toggle-slider absolute top-2 left-2 w-[6.5rem] h-10 bg-white rounded-full shadow-lg transition-transform duration-300 ease-in-out"
+              [style.transform]="whatsappProdMode() ? 'translateX(100%)' : 'translateX(0)'"
+            ></div>
+            <div class="relative z-10 flex h-full">
+              <div
+                class="flex-1 flex items-center justify-center font-semibold text-lg transition-all duration-300"
+                [ngClass]="[!whatsappProdMode() ? 'text-sintese-medium' : 'text-white']"
+              >
+                Teste
+              </div>
+              <div
+                class="flex-1 flex items-center justify-center font-semibold text-lg transition-all duration-300"
+                [ngClass]="[whatsappProdMode() ? 'text-sintese-medium' : 'text-white']"
+              >
+                Produção
+              </div>
+            </div>
+          </button>
+
+          <div
+            class="expandable-container w-full overflow-hidden transition-all duration-700 ease-in-out"
+            [style.max-height]="!whatsappProdMode() ? '24rem' : '0px'"
+            [style.opacity]="!whatsappProdMode() ? '1' : '0'"
+            [style.margin-top]="!whatsappProdMode() ? '2rem' : '0'"
+          >
+            <div
+              class="flex flex-col gap-6 p-8 w-full border border-yellow bg-yellow/10 rounded-xl"
+            >
+              <div class="flex justify-between items-center w-full">
+                <p class="text-yellow font-semibold text-xl">Números teste</p>
+                <button
+                  class="btn-anim bg-yellow px-4 py-2 rounded-xl flex-center gap-2 font-semibold hover:-translate-y-1"
+                >
+                  <img class="w-4 h-4" src="icons/plus-white.svg" alt="add" />
+                  <p class="text-white">Adicionar</p>
+                </button>
+              </div>
+              <div class="flex flex-col gap-2">
+                @for (
+                  testNumber of testNumbersGroup.controls.testNumbersArray.controls;
+                  track $index
+                ) {
+                  <input
+                    type="text"
+                    [formControl]="testNumber"
+                    class="bg-black text-white font-medium rounded-xl px-4 py-3"
+                  />
+                }
+              </div>
+              <button
+                class="btn-anim flex-center gap-2 rounded-xl px-4 py-2 font-semibold hover:-translate-y-1"
+                [ngClass]="[
+                  testNumbersGroup.controls.testNumbersArray.valid ? 'bg-sintese-green' : 'bg-gray',
+                ]"
+              >
+                <img class="w-6" src="icons/update-white.svg" alt="update" />
+                <p>Salvar Números</p>
+              </button>
+            </div>
+          </div>
+
+          <button
+            class="mt-8 w-full rounded-xl bg-gradient-to-br from-blue to-sintese hover:from-blue/90 hover:to-sintese/90 btn-anim py-3 text-lg font-semibold hover:-translate-y-1"
+          >
+            Ativar modo {{ whatsappProdMode() ? 'Produção' : 'Teste' }}
+          </button>
+
+          <div
+            class="mt-8 flex text-center flex-col gap-6 p-8 w-full border border-blue bg-blue/10 rounded-xl"
+          >
+            <h1 class="text-lg font-semibold">
+              Escolha como o agente deve funcionar neste momento
+            </h1>
+
+            <div>
+              <h2 class="text-yellow text-lg font-semibold">🧪 Modo teste</h2>
+              <p class="text-white-tertiary mt-2">
+                Use este modo para validar o funcionamento do agente antes da ativação oficial.
+              </p>
+              <p class="text-white-tertiary mt-1">
+                Adicione manualmente os números de telefone que deverão ser atendidos pela IA
+                durante os testes.
+              </p>
+            </div>
+
+            <div>
+              <h2 class="text-sintese-green text-lg font-semibold hover:-translate-y-1">
+                🚀 Modo produção
+              </h2>
+              <p class="text-white-tertiary mt-2">
+                Seu agente estará ativo para responder automaticamente todos os leads que entrarem
+                em contato via WhatsApp.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    } @else {
+      <div class="flex flex-col items-center gap-8">
+        <div class="card w-[40rem]">
+          <div class="ring"></div>
+
+          <div class="rounded-4xl flex-center flex-col content p-12">
+            <div class="flex-center bg-negative w-16 h-16 rounded-xl border-4 border-black x-anim">
+              <img class="w-full" src="icons/x-white.svg" alt="x" />
+            </div>
+            <p class="text-negative mt-8 text-3xl font-bold">Desconectado</p>
+            <p class="mt-4 text-xl">Sua instância do WhatsApp não está conectada.</p>
+            <div class="flex gap-4 w-full justify-center">
+              <button
+                [attr.disabled]="qrCodeLoading() || qrCodeBase64()"
+                (click)="generateQrCode()"
+                class="hover:-translate-y-1 w-[12.5rem] mt-8 text-lg btn-anim px-6 py-4 rounded-xl bg-gradient-to-br from-yellow to-warning hover:from-yellow/90 hover:to-warning/90 text-white font-semibold shadow-lg hover:shadow-xl disabled:from-yellow/30 disabled:to-warning/30"
+              >
+                Gerar QR Code
+              </button>
+              <button
+                (click)="checkConnection()"
+                class="hover:-translate-y-1 w-[12.5rem] mt-8 text-lg btn-anim px-6 py-4 rounded-xl bg-gradient-to-br from-blue to-sintese hover:from-blue/90 hover:to-sintese/90 text-white font-semibold shadow-lg hover:shadow-xl"
+              >
+                Checar novamente
+              </button>
+            </div>
+
+            <div
+              class="expandable-container overflow-hidden transition-all duration-700 ease-in-out"
+              [style.max-height]="qrCodeLoading() ? '24rem' : '0px'"
+              [style.opacity]="qrCodeLoading() ? '1' : '0'"
+            >
+              @if (qrCodeLoading() && !qrCodeBase64()) {
+                <div
+                  class="w-56 h-56 border-4 border-white mt-8 rounded-2xl flex flex-col gap-4 items-center justify-center appear"
+                >
+                  <div class="relative double-spin-wrapper animate-bounce">
+                    <div
+                      class="w-16 h-16 border-4 border-white border-t-sintese rounded-full spin-animation-outer"
+                    ></div>
+                    <div
+                      class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                    >
+                      <div
+                        class="w-8 h-8 border-2 border-sintese border-b-white rounded-full spin-animation-inner"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+            @if (qrCodeBase64()) {
+              <div class="flex-center flex-col mt-8 gap-2">
+                <p class="font-semibold text-lg text-white">
+                  O QR Code expira em:
+                  <span class="text-lg font-semibold text-yellow"
+                    >{{ qrCodeCountdown() }} segundos</span
+                  >
+                </p>
+                <div
+                  class="w-56 h-56 border-4 border-white rounded-2xl flex items-center justify-center"
+                >
+                  <img class="w-48 h-48" [src]="qrCodeBase64()" alt="QR Code" />
+                </div>
+              </div>
+            }
+
+            <div
+              class="mt-8 flex items-center text-center flex-col p-4 w-full border border-blue bg-blue/10 rounded-xl"
+            >
+              <div class="flex-center gap-2">
+                <img class="w-8" src="icons/bulb.svg" alt="" />
+                <p class="font-medium">
+                  Após escanear o QR Code, a conexão pode levar alguns minutos.
+                </p>
+              </div>
+
+              <p class="mt-2 text-tertiary">
+                No WhatsApp pode aparecer a mensagem “Sincronizando...” — isso é normal e pode
+                demorar de 3 a 5 minutos para concluir.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  }
+</div>

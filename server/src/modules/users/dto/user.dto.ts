@@ -5,24 +5,30 @@ export class User {
   @Field(() => ID)
   id: string;
 
-  @Field(() => ID, { name: 'accountId' })
-  account_id: string;
-
   @Field()
   username: string;
+
+  @Field()
+  name: string;
+
+  @Field()
+  niche: string;
+
+  @Field({ name: 'evoDomain' })
+  evo_domain: string;
+
+  @Field({ name: 'evoKey' })
+  evo_key: string;
+
+  @Field({ name: 'agentWebhook' })
+  agent_webhook: string;
+
+  @Field({ name: 'whatsappConnected' })
+  whatsapp_connected: boolean;
 
   @Field({ name: 'createdAt' })
   created_at: Date;
 
   @Field({ name: 'updatedAt' })
   updated_at: Date;
-
-  @Field({ name: 'lastLogin' })
-  last_login: Date;
-
-  @Field({ name: 'emailVerifiedAt' })
-  email_verified_at: Date;
-
-  // @Field()
-  // role: Roles
 }

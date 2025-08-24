@@ -19,9 +19,12 @@ type Mutation {
 }
 
 type Query {
+  connectionStatus(username: String!): Boolean!
   getPresignedUrl(input: GetPresignedUrlInput!): String!
   isAuthenticated: Boolean!
+  isWhatsappConfigured(username: String!): Boolean!
   me: User!
+  qrcode(username: String!): String!
   users: [User!]!
 }
 
@@ -32,13 +35,14 @@ input SignInInput {
 }
 
 type User {
-  accountId: ID!
+  agentWebhook: String!
   createdAt: DateTime!
-  email: String!
-  emailVerifiedAt: DateTime!
+  evoDomain: String!
+  evoKey: String!
   id: ID!
-  lastLogin: DateTime!
   name: String!
+  niche: String!
   updatedAt: DateTime!
   username: String!
+  whatsappConnected: Boolean!
 }

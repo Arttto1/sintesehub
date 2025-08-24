@@ -1,0 +1,9 @@
+<span
+  [ngClass]="{
+    underline: underlined(),
+    'hover:secondary': hoverable() && color() === 'secondary',
+  }"
+  [class]="'text-' + color() + ' leading-none align-middle'"
+>
+  <ng-content></ng-content>
+</span>

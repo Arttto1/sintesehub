@@ -15,7 +15,11 @@ export class IdentifierAndPasswordAuthService {
     private readonly configService: ConfigService,
   ) {}
 
-  public async auth(username: string, password: string, res: Response): Promise<User> {
+  public async auth(
+    username: string,
+    password: string,
+    res: Response,
+  ): Promise<User> {
     const user = await this.usersService.authUser({
       username,
     });
@@ -32,10 +36,9 @@ export class IdentifierAndPasswordAuthService {
 
     const token = this.jwtService.sign({
       sub: user.id,
-      accountId: user.account_id,
       username: user.username,
-      email: user.email,
       name: user.name,
+      niche: user.niche,
     });
 
     res.cookie('auth_token', token, {

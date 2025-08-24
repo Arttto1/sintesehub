@@ -1,0 +1,11 @@
+query isWhatsappConfigured($username: String!) {
+  isWhatsappConfigured(username: $username)
+}
+
+query ConnectionStatus($username: String!) {
+  connectionStatus(username: $username)
+}
+
+query QrCode($username: String!) {
+  qrcode(username: $username)
+}

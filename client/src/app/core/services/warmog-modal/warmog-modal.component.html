@@ -1,0 +1,18 @@
+@if (isOpen()) {
+  <div
+    class="backdrop-blur-[2px] backdrop-brightness-50 fixed inset-0 flex-center z-50"
+  >
+    <div class="warmog-modal-dialog">
+      <div class="warmog-modal-title">{{ options()?.title }}</div>
+      <div class="warmog-modal-message">{{ options()?.message }}</div>
+      <div class="warmog-modal-actions">
+        <button class="confirm" (click)="confirm()">
+          {{ options()?.confirmText ?? "Confirmar" }}
+        </button>
+        <button class="cancel" (click)="cancel()">
+          {{ options()?.cancelText ?? "Cancelar" }}
+        </button>
+      </div>
+    </div>
+  </div>
+}

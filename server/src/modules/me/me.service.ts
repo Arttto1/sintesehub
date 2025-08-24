@@ -14,4 +14,8 @@ export class MeService {
     }
     return this.dbService.db('users').select('*').where({ id: userId }).first();
   }
+
+  async meByUsername(username: string): Promise<User> {
+    return this.dbService.db('users').select('*').where({ username }).first();
+  }
 }
