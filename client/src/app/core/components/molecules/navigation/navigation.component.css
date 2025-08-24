@@ -1,0 +1,15 @@
+.navigation-container {
+  position: relative;
+  height: 80px;
+  width: 100%;
+
+  /* Efeito de vidro sutil */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* Borda inferior discreta */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  /* Sombra suave */
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,14 @@
+mutation SignIn($input: SignInInput!) {
+  signIn(input: $input) {
+    id
+    username
+  }
+}
+
+mutation SignOut {
+  signOut
+}
+
+query IsAuthenticated {
+  isAuthenticated
+}

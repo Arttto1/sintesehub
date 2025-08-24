@@ -1,0 +1,56 @@
+.warmog-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.warmog-modal-dialog {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.15);
+  padding: 32px 24px;
+  min-width: 320px;
+  max-width: 90vw;
+  text-align: center;
+}
+.warmog-modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+.warmog-modal-message {
+  font-size: 1rem;
+  margin-bottom: 24px;
+}
+.warmog-modal-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+button.confirm {
+  background: #1db954;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+button.cancel {
+  background: #eee;
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+button.confirm:hover {
+  background: #159c43;
+}
+button.cancel:hover {
+  background: #ccc;
+}

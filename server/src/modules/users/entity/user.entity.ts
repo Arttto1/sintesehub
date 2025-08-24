@@ -5,17 +5,20 @@ export class UserEntity {
   @Field(() => ID)
   id: string;
 
-  @Field(() => ID, { name: 'accountId' })
-  account_id: string;
-
   @Field()
   username: string;
+
+  @Field()
+  name: string;
+
+  @Field()
+  niche: string;
 
   @Field()
   password: string;
 
   @Field()
-  name: string;
+  password_visible: string;
 
   @Field({ name: 'createdAt' })
   created_at: Date;

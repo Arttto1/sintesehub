@@ -1,0 +1,54 @@
+<div class="signin-container">
+  <!-- Loading Animation -->
+  <div class="loading-screen" [class.fade-out]="showForm()">
+    <div class="background">
+      <!-- Animated blur elements -->
+      <div class="blur blur1"></div>
+      <div class="blur blur2"></div>
+      <div class="blur blur3"></div>
+
+      <!-- Floating particles -->
+      <div class="particle particle1"></div>
+      <div class="particle particle2"></div>
+      <div class="particle particle3"></div>
+      <div class="particle particle4"></div>
+      <div class="particle particle5"></div>
+
+      <!-- Main logo container -->
+      <div class="logo-container">
+        <div class="logo-circle">
+          <div class="logo-inner-circle">
+            <!-- Síntese logo/icon -->
+            <div class="sintese-icon">
+              <img class="w-80 h-80" src="icons/logo_vertical_branco.svg" alt="logo" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Main text -->
+        <h1 class="welcome-text">Bem-vindo ao Lara Hub</h1>
+        <p class="subtitle">O seu ecossistema digital de inteligência e crescimento</p>
+
+        <!-- Floating robot icon -->
+        <div class="robot-icon">🤖</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign-in form (appears after loading) -->
+  <div class="signin-form" [class.show]="showForm()">
+    <div class="form-container">
+      <!-- Aqui você pode adicionar seus inputs de sign-in -->
+      <h2>Faça seu login para continuar</h2>
+      <div>
+        <warmog-input [control]="signInForm.controls.username" label="Usuário"></warmog-input>
+        <warmog-input
+          [control]="signInForm.controls.password"
+          label="Senha"
+          type="password"
+        ></warmog-input>
+        <button (click)="signIn()" class="btn-anim w-40">Entrar</button>
+      </div>
+    </div>
+  </div>
+</div>

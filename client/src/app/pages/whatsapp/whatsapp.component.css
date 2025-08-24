@@ -1,0 +1,67 @@
+@keyframes title-glow {
+  0%,
+  100% {
+    text-shadow: 5px 8px 64px var(--color-sintese);
+  }
+  50% {
+    text-shadow:
+      0 0 32px var(--color-success),
+      0 0 64px var(--color-sintese);
+  }
+}
+
+/* .animate-title-glow {
+  animation: title-glow 10s ease-in-out infinite;
+} */
+
+.title-gradient {
+  background-image: linear-gradient(
+    to right,
+    var(--color-sintese-green),
+    var(--color-success),
+    var(--color-sintese),
+    var(--color-sintese-light)
+  );
+}
+
+/* Animação de glow verde para o ícone de check */
+@keyframes green-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 10px rgba(34, 187, 51, 0.6),
+      0 0 20px rgba(34, 187, 51, 0.4),
+      0 0 30px rgba(34, 187, 51, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(34, 187, 51, 0.8),
+      0 0 40px rgba(34, 187, 51, 0.6),
+      0 0 60px rgba(34, 187, 51, 0.4),
+      0 0 80px rgba(34, 187, 51, 0.2);
+  }
+}
+
+.check-glow {
+  animation: green-glow 2s ease-in-out infinite;
+  position: relative;
+}
+
+/* Alternativa com pulse mais sutil */
+@keyframes green-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 15px rgba(34, 187, 51, 0.5);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow:
+      0 0 25px rgba(34, 187, 51, 0.7),
+      0 0 35px rgba(34, 187, 51, 0.3);
+    transform: scale(1.05);
+  }
+}
+
+.check-pulse {
+  animation: green-pulse 3s ease-in-out infinite;
+}

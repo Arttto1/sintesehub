@@ -1,0 +1,40 @@
+<div class="main-layout">
+  <!-- Background animado -->
+  <div class="background">
+    <!-- Animated blur elements -->
+    <div class="blur blur1"></div>
+    <div class="blur blur2"></div>
+    <div class="blur blur3"></div>
+
+    <!-- Floating particles -->
+    <div class="particle particle1"></div>
+    <div class="particle particle2"></div>
+    <div class="particle particle3"></div>
+    <div class="particle particle4"></div>
+    <div class="particle particle5"></div>
+  </div>
+
+  <!-- Navigation fixo no topo -->
+  <div class="navigation-wrapper">
+    <navigation></navigation>
+  </div>
+
+  <!-- Conteúdo principal com espaçamento correto -->
+  <div class="content-wrapper">
+    <div class="router-content" [class]="navigationDirection()">
+      <router-outlet class="router-outlet"></router-outlet>
+    </div>
+  </div>
+</div>
+
+<!-- Paleta de cores (pode ser removida se não precisar) -->
+<div style="display: none">
+  <div class="bg-purple"></div>
+  <div class="bg-brown"></div>
+  <div class="bg-pink"></div>
+  <div class="bg-sintese"></div>
+  <div class="bg-sintese-dark"></div>
+  <div class="bg-success"></div>
+  <div class="bg-negative"></div>
+  <div class="bg-green-dark"></div>
+</div>

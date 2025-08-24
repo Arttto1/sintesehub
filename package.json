@@ -1,0 +1,14 @@
+{
+  "name": "sintesehub",
+  "packageManager": "yarn@4.9.1",
+  "workspaces": {
+    "packages": [
+      "client",
+      "server"
+    ]
+  },
+  "dependencies": {
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.2"
+  }
+}

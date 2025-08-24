@@ -32,13 +32,10 @@ input SignInInput {
 }
 
 type User {
-  accountId: ID!
   createdAt: DateTime!
-  email: String!
-  emailVerifiedAt: DateTime!
   id: ID!
-  lastLogin: DateTime!
   name: String!
+  niche: String!
   updatedAt: DateTime!
   username: String!
 }
